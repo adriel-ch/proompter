@@ -44,6 +44,13 @@ const Feed = () => {
         )
     }
 
+    const handleTagClick = (tagName) => {
+        setSearchText(tagName)
+
+        const searchResult = filterPrompts(tagName) // filters incoming posts
+        setSearchedResults(searchResult)
+    }
+
     const [posts, setPosts] = useState([]) // add prompts and set them
 
     useEffect(() => {
@@ -73,12 +80,12 @@ const Feed = () => {
             {searchText ? (
                 <PromptCardList
                     data={searchedResults}
-                    handleTagClick={() => {}}
+                    handleTagClick={handleTagClick}
                 />
             ) : (
                 <PromptCardList
                     data={posts}
-                    handleTagClick={() => {}}
+                    handleTagClick={handleTagClick}
                 />
             )}
         </section>
