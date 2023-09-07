@@ -19,8 +19,30 @@ const PromptCardList = ({ data, handleTagClick }) => {
 }
 
 const Feed = () => {
-    const [searchText, setSearchText] = useState('')
-    const handleSearchChange = (e) => {}
+    const [searchText, setSearchText] = useState('') // state of current search field
+    const [searchTimeout, setSearchTimeout] = useState(null) // used to grab timeout object
+    const [searchedResults, setSearchedResults] = useState([])
+
+    const filterPrompts = (searchText) => {
+        const regex = new RegExp(searchText, "i")
+        return posts.filter(
+            (item) => (
+                regex.test(item.creator) || regex.test(item.prompt) || regex.test(item.tag)
+            )
+        )
+    }
+
+    const handleSearchChange = (e) => {
+        clearTimeout(searchTimeout)
+        setSearchText(e.target.value)
+        // filter posts
+        setSearchTimeout(
+            setTimeout(() => {
+                const searchResult = filterPrompts(e.target.value) // filters incoming posts
+                setSearchedResults(searchResult)
+            }, 500)
+        )
+    }
 
     const [posts, setPosts] = useState([]) // add prompts and set them
 
@@ -40,7 +62,7 @@ const Feed = () => {
             <form className="relative w-full flex-center">
                 <input
                     type="text"
-                    placeholder="Search for a tag or a username"
+                    placeholder="Search for a prompt or a username"
                     value={searchText}
                     onChange={handleSearchChange}
                     required
@@ -48,10 +70,17 @@ const Feed = () => {
                 />
             </form>
 
-            <PromptCardList
-                data={posts}
-                handleTagClick={() => {}}
-            />
+            {searchText ? (
+                <PromptCardList
+                    data={searchedResults}
+                    handleTagClick={() => {}}
+                />
+            ) : (
+                <PromptCardList
+                    data={posts}
+                    handleTagClick={() => {}}
+                />
+            )}
         </section>
     )
 }
