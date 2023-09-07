@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
+import DarkMode from './DarkMode'
 
 const Nav = () => {
 
@@ -24,13 +25,13 @@ const Nav = () => {
   }, [])
 
   return (
-    <nav className='flex-between w-full mb-16 pt-3'>
+    <nav className='flex-between w-full mb-16 p-3 border-b border-l border-r border-gray-500 backdrop-blur rounded-b-3xl'>
       <Link href='/' className='flex gap-2 flex-center'>
         <Image
           src='/assets/images/logo.svg'
           alt='Site Logo'
-          width={30}
-          height={30}
+          width={37}
+          height={37}
           className='object-contain'
         />
         <p className='logo_text'>Proompter</p>
@@ -40,6 +41,7 @@ const Nav = () => {
       <div className='sm:flex hidden'>
         {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
+            <DarkMode/>
             <Link href='/create-prompt' className='black_btn'>
               Create Post
             </Link>
@@ -59,8 +61,9 @@ const Nav = () => {
             </Link>
           </div>
         ) : (
-          <>
+          <div className='flex gap-3 md:gap-5'>
             {/* Map over providers */}
+            <DarkMode/>
             {providers && Object.values(providers).map((provider) => (
               <button
                 type='button'
@@ -71,13 +74,14 @@ const Nav = () => {
                 Sign In
               </button>
             ))}
-          </>
+          </div>
         )}
       </div>
       {/* End Desktop Nav */}
 
       {/* Mobile Nav */}
-      <div className='sm:hidden flex relative'>
+      <div className='sm:hidden flex relative gap-3'>
+        <DarkMode/>
         {session?.user ? (
           <div className='flex'>
             <Image
