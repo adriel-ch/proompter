@@ -28,10 +28,10 @@ const Nav = () => {
     <nav className='flex-between w-full mb-16 p-3 border-b border-l border-r border-gray-500 backdrop-blur rounded-b-3xl'>
       <Link href='/' className='flex gap-2 flex-center'>
         <Image
-          src='/assets/images/logo.svg'
+          src='/assets/images/logo2.png'
           alt='Site Logo'
-          width={37}
-          height={37}
+          width={45}
+          height={45}
           className='object-contain'
         />
         <p className='logo_text'>Proompter</p>
