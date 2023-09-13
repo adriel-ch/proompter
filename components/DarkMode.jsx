@@ -52,7 +52,7 @@ const DarkMode = () => {
                 <svg
                   onClick={() => setTheme("light")}
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-9 w-9 rounded-full border border-white text-white cursor-pointer hover:fill-white"
+                  className="h-9 w-9 rounded-full border border-gray-300 text-gray-300 cursor-pointer hover:fill-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
