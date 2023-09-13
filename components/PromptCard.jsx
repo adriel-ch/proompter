@@ -34,7 +34,7 @@ const PromptCard = ({post, handleTagClick, handleEdit, handleDelete}) => {
                             {post.creator.username}
                         </h3>
                         <p className="font-inter text-sm text-gray-500 dark:text-gray-300">
-                            {post.creator.email}
+                            {/* {post.creator.email} */}
                         </p>
                     </div>
                 </div>
