@@ -31,7 +31,6 @@ const DarkMode = () => {
         typeof window !== "undefined" ? localStorage.theme : "dark"
     );
     const prevColorTheme = theme === "dark" ? "light" : "dark";
-    const [localthem, setLocalthem] = useState(localStorage.theme)
     
     useEffect(() => {
         const root = window.document.documentElement;
